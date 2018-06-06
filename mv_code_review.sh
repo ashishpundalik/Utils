@@ -1,19 +1,29 @@
 #!/bin/bash
 
-mkdir -p /Users/aashishpundalik/Documents/Work/code_reviews/$1/$2
+echo "Code Download Path: "
+echo $CODE_DOWNLOAD_PATH
 
-echo $3
+echo "Code Review Path: "
+echo $CODE_REVIEW_PATH
+
+
+if [[ -z "$CODE_DOWNLOAD_PATH" ]] || [[ -z "$CODE_REVIEW_PATH" ]]; then
+  echo "Please set both CODE_REVIEW_PATH and CODE_DOWNLOAD_PATH env variables"
+  exit 1
+fi
+
+mkdir -p $CODE_REVIEW_PATH/$1/$2
 
 if [[ "$3" = *.zip ]]
 then
-  echo "Aala! 1"
-  unzip /Users/aashishpundalik/Downloads/$3 -d /Users/aashishpundalik/Documents/Work/code_reviews/$1/$2/
-  rm /Users/aashishpundalik/Downloads/$3
+  echo "unzipping $3..."
+  unzip $CODE_DOWNLOAD_PATH/$3 -d $CODE_REVIEW_PATH/$1/$2/
+  rm $CODE_DOWNLOAD_PATH/$3
 elif [[ $3 == http://* ]] || [[ $3 == https://* ]]
 then
-  echo "Aala! 2"
-  git clone $3 /Users/aashishpundalik/Documents/Work/code_reviews/$1/$2/
+  echo "cloning $3..."
+  git clone $3 $CODE_REVIEW_PATH/$1/$2/
 else
-  echo "Aala! 3"
-  mv /Users/aashishpundalik/Downloads/$3 /Users/aashishpundalik/Documents/Work/code_reviews/$1/$2/
+  echo "moving $3..."
+  mv $CODE_DOWNLOAD_PATH/$3 $CODE_REVIEW_PATH/$1/$2/
 fi

@@ -14,10 +14,10 @@ fi
 
 mkdir -p $CODE_REVIEW_PATH/$1/$2
 
-if [[ "$3" = *.zip ]]
+if [[ "$2" = *.zip ]]
 then
   move_zip
-elif [[ $3 == http://* ]] || [[ $3 == https://* ]] || [[ "$3" = *.bundle ]]
+elif [[ $2 == http://* ]] || [[ $2 == https://* ]] || [[ "$2" = *.bundle ]]
 then
   clone_git
 else
@@ -25,18 +25,18 @@ else
 fi
 
 move_zip() {
-  echo "unzipping $3..."
-  unzip $CODE_DOWNLOAD_PATH/$3 -d $CODE_REVIEW_PATH/$1/$2/
-  rm $CODE_DOWNLOAD_PATH/$3
+  echo "unzipping $2..."
+  unzip $CODE_DOWNLOAD_PATH/$2 -d $CODE_REVIEW_PATH/$1/
+  rm $CODE_DOWNLOAD_PATH/$2
 }
 
 clone_git() {
-  echo "cloning $3..."
-  git clone $3 $CODE_REVIEW_PATH/$1/$2/
-  rm $CODE_DOWNLOAD_PATH/$3
+  echo "cloning $2..."
+  git clone $2 $CODE_REVIEW_PATH/$1/
+  rm $CODE_DOWNLOAD_PATH/$2
 }
 
 move_file() {
-  echo "moving $3..."
-  mv $CODE_DOWNLOAD_PATH/$3 $CODE_REVIEW_PATH/$1/$2/
+  echo "moving $2..."
+  mv $CODE_DOWNLOAD_PATH/$2 $CODE_REVIEW_PATH/$1/
 }

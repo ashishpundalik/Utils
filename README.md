@@ -12,14 +12,14 @@ Setting env variables:
 Executing the script:
 Format:
 ```bash
-./mv_code_review.sh NAME_OF_THE_LANGUAGE NAME_OF_THE_CANDIDATE NAME_OF_THE_DOWNLOADED_FILE
+./mv_code_review.sh NAME_OF_THE_CANDIDATE NAME_OF_THE_DOWNLOADED_FILE
 ```
 Examples:
 1) With ZIP:
 ```bash
-./mv_code_review.sh RUBY YUKIHIRO_MATSUMOTO code_assignment.zip
+./mv_code_review.sh YUKIHIRO_MATSUMOTO code_assignment.zip
 ```
 2) If it is already extracted in a folder:
 ```bash
-./mv_code_review.sh JAVA JAMES_GOSLING code_assignment
+./mv_code_review.sh JAMES_GOSLING code_assignment
 ```
